@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--User List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Simple_Moya" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,34 +24,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="k3d-lZ-7c9"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDG-Gn-8Oh">
-                                <rect key="frame" x="20" y="80" width="374" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="Ctm-4H-1G7"/>
-                                    <constraint firstAttribute="height" constant="52" id="vl7-MG-hMG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="43"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                         <constraints>
-                            <constraint firstItem="aDG-Gn-8Oh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="80" id="35w-OZ-yPK"/>
-                            <constraint firstItem="MMa-ZB-7PS" firstAttribute="top" secondItem="aDG-Gn-8Oh" secondAttribute="bottom" constant="6" id="3Ji-V6-3dD"/>
                             <constraint firstItem="MMa-ZB-7PS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N1g-Hf-Y7y"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aDG-Gn-8Oh" secondAttribute="trailing" constant="20" id="VRo-4X-7PU"/>
-                            <constraint firstItem="aDG-Gn-8Oh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eyW-ud-Xve"/>
                             <constraint firstAttribute="bottom" secondItem="MMa-ZB-7PS" secondAttribute="bottom" id="ipw-wy-yg9"/>
                             <constraint firstItem="MMa-ZB-7PS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="md1-6q-haW"/>
                             <constraint firstItem="MMa-ZB-7PS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qjS-QB-tvJ"/>
-                            <constraint firstItem="MMa-ZB-7PS" firstAttribute="top" secondItem="aDG-Gn-8Oh" secondAttribute="bottom" constant="6" id="wu6-yy-yzv"/>
+                            <constraint firstItem="MMa-ZB-7PS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-2" id="w3S-ta-6ho"/>
                             <constraint firstItem="MMa-ZB-7PS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x04-3t-36a"/>
                             <constraint firstAttribute="bottomMargin" secondItem="MMa-ZB-7PS" secondAttribute="bottom" constant="-34" id="x7y-dU-hb2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="WgI-Cs-LSL">
+                    <navigationItem key="navigationItem" title="User List" largeTitleDisplayMode="always" id="WgI-Cs-LSL">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Dgw-cF-QLg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -72,15 +58,24 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zk8-Ll-kuy" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="U1R-Ap-LWZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" largeTitles="YES" id="U1R-Ap-LWZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
-                        <navigationBarAppearance key="standardAppearance" backgroundImageContentMode="scaleToFill"/>
-                        <navigationBarAppearance key="compactAppearance"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="systemGroupedBackgroundColor"/>
+                            <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance" backgroundEffect="regular">
+                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -95,6 +90,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

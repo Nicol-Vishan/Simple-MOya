@@ -67,15 +67,35 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        print(user)
+        provider.request(.updateUser(id: user.id, name: "Tim Cook")) { result in
+            switch result {
+                case .success(let response):
+                    do {
+                        let modifiedUser = try JSONDecoder().decode(User.self, from: response.data)
+                        self.users[indexPath.row] = modifiedUser
+                        self.tableViewUser.reloadData()
+                    } catch let error {
+                        print(error)
+                    }
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            self.users.remove(at: indexPath.row)
-            tableViewUser.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        } else if (editingStyle == UITableViewCell.EditingStyle.insert) {
-            
+            let user = users[indexPath.row]
+            provider.request(.deleteUser(id: user.id)) { result in
+                switch result {
+                    case.success(let response):
+                        print("Delete: \(response)")
+                        self.users.remove(at: indexPath.row)
+                        self.tableViewUser.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                    case .failure(let error):
+                        print(error)
+                }
+            }
         }
     }
 
