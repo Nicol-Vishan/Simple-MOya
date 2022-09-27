@@ -10,28 +10,46 @@ import Moya
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var tableViewUser: UITableView!
 
     var users = [User]()
     let provider = MoyaProvider<UserServices>()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        provider.request(.readUsers) { result in
+    fileprivate func readUsers() -> Cancellable {
+        return provider.request(.readUsers) { result in
             switch result {
-                case .success(let response):
-                    do {
-                        let userList = try JSONDecoder().decode([User].self, from: response.data)
-                        self.users = userList
-                        self.tableViewUser.reloadData()
-                    } catch (let error)  {
-                        print(error)
-                    }
-                case .failure(let error):
+            case .success(let response):
+                do {
+                    let userList = try JSONDecoder().decode([User].self, from: response.data)
+                    self.users = userList
+                    self.tableViewUser.reloadData()
+                } catch (let error)  {
                     print(error)
+                }
+            case .failure(let error):
+                print(error)
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        readUsers()
 
+    }
+    
+    func setupView() {
+        btnRefresh.setImage(UIImage(named: "refresh"), for: .normal)
+        btnRefresh.setTitle("", for: .normal)
+        btnRefresh.backgroundColor = UIColor.clear
+        btnRefresh.layer.cornerRadius = 25
+        btnRefresh.translatesAutoresizingMaskIntoConstraints = false
+        btnRefresh.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        btnRefresh.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        btnRefresh.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        btnRefresh.centerYAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant:  -10).isActive = true
     }
 
     @IBAction func pressedAddUser(_ sender: Any) {
@@ -51,6 +69,14 @@ class ViewController: UIViewController {
             }
         }
     }
+    @IBAction func btnnRefresh(_ sender: Any) {
+        btnRefresh.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25) {
+            self.btnRefresh.transform = self.btnRefresh.transform.rotated(by: CGFloat.pi)
+            self.readUsers()
+        }
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
